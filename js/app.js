@@ -1,8 +1,8 @@
 'use strict';
 
-let imageEls = document.querySelectorAll('img');
-let formResultsEl = document.getElementById('results');
 
+let imageEls = document.querySelectorAll('img');
+const ctx = document.getElementById('myChart');
 
 console.log(imageEls);
 
@@ -31,19 +31,18 @@ let images = [
   'wine-glass.jpg'
 ];
 
-const image = [];
+let image = [];
 
-function Image(fileName) {
+function Image(images) {
   this.clicks = 0;
   this.views = 0;
-  this.id = fileName;
-  this.src = `img/${fileName}`;
+  this.id = images;
+  this.src = `img/${images}`;
 }
 
 Image.prototype.handleClick = function() {
-
+  this.clicks++;
 };
-
 for (let i = 0; i < images.length; i++) {
   image.push(new Image(images[i]));
 }
@@ -56,18 +55,22 @@ imageEls[1].src = image[1].src;
 image[1].views++;
 imageEls[2].id = image[2].id;
 imageEls[2].src = image[2].src;
+image[2].views++;
 
 function handleClick(event) {
-
+  clicks++;
   for (let i = 0; i < image.length; i++) {
-    console.log(event.target.id, image[i].id);
     if (event.target.id === images[i].id) {
       image[i].clicks++;
     }
   }
 
-  renderImages();
-  console.log(image);
+  if (clicks > 25) {
+    // alert('You are done');
+    renderChart();
+  } else {
+    renderImages();
+  }
 }
 
 imageEls.forEach(function (img) {
@@ -111,4 +114,61 @@ function generateRandomImage() {
 console.log(clicks);
 console.log(views);
 
+function renderChart() {
+  let clicks = [];
+  let views = [];
 
+  for (let i = 0; i<image.length; i++) {
+    clicks.push(image[i].clicks);
+    views.push(image[i].views);
+  }
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: images,
+      datasets: [{
+        label: '# of clicks',
+        data: clicks,
+        backgroundColor: ['red'],
+      }, {
+        label: '# of views',
+        data: views,
+        backgroundColor: ['blue'],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+// This is the code to Generate the Chart//
+// const myChart = new Chart(ctx, {
+//   type: 'bar',
+//   data: {
+//     labels: images,
+//     datasets: [{
+//       label: '# of Votes',
+//       backgroundColor: ['Blue'],
+//       data: [12, 19, 3, 5, 2, 3],
+//       borderWidth: 1
+//     },
+//     {
+//       backgroundColor: ['Red'],
+//       data: [10, 2, 6, 7, 9, 21],
+//       label: 'View Results',
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   }
+// });
+}

@@ -5,11 +5,12 @@ body {
 img {
     width: 150px;
     height: 150px;
-    margin: 25px;
+    margin: 10px;
     border-style: solid;
+    border-width: 1px;
 }
 
-section {
+/* section {
     justify-content: center;
     display:flex;
     flex-direction: row;
@@ -21,9 +22,9 @@ section {
     border-radius: 100px;
     border-color: rgb(245, 210, 145);
     background-color: rgb(193, 233, 233);
-    padding: 10px;
+    padding: 10px; 
 
-}
+}*/
 
 legend {
     display: flex;
@@ -44,3 +45,14 @@ header {
     justify-content: center;
     background-color: rgb(254, 255, 209);
 }
+
+canvas {
+    max-width: 700px;
+    max-height: 400px;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
