@@ -60,7 +60,7 @@ image[2].views++;
 function handleClick(event) {
   clicks++;
   for (let i = 0; i < image.length; i++) {
-    if (event.target.id === images[i].id) {
+    if (event.target.id === image[i].id) {
       image[i].clicks++;
     }
   }
