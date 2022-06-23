@@ -65,7 +65,7 @@ function handleClick(event) {
     }
   }
 
-  if (clicks > 25) {
+  if (clicks >= 25) {
     // alert('You are done');
     renderChart();
   } else {
@@ -94,6 +94,8 @@ function renderImages() {
   while (image3.id === image1.id) {
     image3 = generateRandomImage();
   }
+
+  // console.log(read);
 
   imageEls[0].id = image1.id;
   imageEls[0].src = image1.src;
@@ -146,6 +148,14 @@ function renderChart() {
     }
   });
 
+  localStorage.setItem('clicks', JSON.stringify(clicks));
+
+  localStorage.setItem('views', JSON.stringify(views));
+
+  JSON.parse(localStorage.getItem('clicks'));
+  JSON.parse(localStorage.getItem('views'));
+
+  console.log(localStorage);
 // This is the code to Generate the Chart//
 // const myChart = new Chart(ctx, {
 //   type: 'bar',
