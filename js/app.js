@@ -28,7 +28,7 @@ let images = [
   'tauntaun.jpg',
   'unicorn.jpg',
   'water-can.jpg',
-  'wine-glass.jpg'
+  'wine-glass.jpg',
 ];
 
 let image = [];
@@ -65,7 +65,7 @@ function handleClick(event) {
     }
   }
 
-  if (clicks >= 25) {
+  if (clicks >= 5) {
     // alert('You are done');
     renderChart();
   } else {
@@ -83,17 +83,26 @@ function renderImages() {
   let image2 = generateRandomImage();
   let image3 = generateRandomImage();
 
-  while (image1.id === image2.id || image1.id === image3.id) {
+  while (image1.id === image3.id || image1.id === image2.id) {
     image1 = generateRandomImage();
   }
 
-  while (image2.id === image3.id) {
+  while (image2.id === image1.id || image2.id === image3.id) {
     image2 = generateRandomImage();
   }
 
-  while (image3.id === image1.id) {
+  while (image3.id === image1.id || image3.id === image2.id) {
     image3 = generateRandomImage();
   }
+
+  // while (image2.id === image1.id || image2.id === image3.id || image3.id === image1.id) {
+  //   image2 = generateRandomImage();
+  //   image3 = generateRandomImage();
+  // }
+
+  // while (image3.id === image1.id) {
+  //   image3 = generateRandomImage();
+  // }
 
   // console.log(read);
 
@@ -113,9 +122,6 @@ function generateRandomImage() {
   return image[index];
 }
 
-console.log(clicks);
-console.log(views);
-
 function renderChart() {
   let clicks = [];
   let views = [];
@@ -132,11 +138,11 @@ function renderChart() {
       datasets: [{
         label: '# of clicks',
         data: clicks,
-        backgroundColor: ['red'],
+        backgroundColor: ['green'],
       }, {
         label: '# of views',
         data: views,
-        backgroundColor: ['blue'],
+        backgroundColor: ['orange'],
       }]
     },
     options: {
