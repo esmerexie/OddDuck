@@ -154,12 +154,28 @@ function renderChart() {
     }
   });
 
-  localStorage.setItem('clicks', JSON.stringify(clicks));
+  function updateClicks() {
+    const clicksString = JSON.stringify(clicks);
+    console.log(clicksString);
+    localStorage.setItem('userClicks', clicks);
+  }
 
-  localStorage.setItem('views', JSON.stringify(views));
+  function updateViews() {
+    const viewString = JSON.stringify(views);
+    console.log(viewString);
+    localStorage.setItem('userViews', views);
+  }
 
-  JSON.parse(localStorage.getItem('clicks'));
-  JSON.parse(localStorage.getItem('views'));
+  updateClicks();
+  updateViews();
+
+  // localStorage.removeItem('cart');
+  // localStorage.setItem('clicks', JSON.stringify(clicks));
+
+  // localStorage.setItem('views', JSON.stringify(views));
+
+  // JSON.parse(localStorage.getItem('clicks'));
+  // JSON.parse(localStorage.getItem('views'));
 
   console.log(localStorage);
 // This is the code to Generate the Chart//
