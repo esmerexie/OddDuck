@@ -3,7 +3,7 @@ body {
 }
 
 p {
-    border: thin solid black;
+    border: thin solid rgb(22, 21, 21);
     background-color: #cef8ce;
     font-family: 'Oswald', sans-serif;
 }
