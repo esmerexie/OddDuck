@@ -65,7 +65,7 @@ function handleClick(event) {
     }
   }
 
-  if (clicks >= 5) {
+  if (clicks >= 25) {
     // alert('You are done');
     renderChart();
   } else {
@@ -154,20 +154,22 @@ function renderChart() {
     }
   });
 
+
+
   function updateClicks() {
-    const clicksString = JSON.stringify(clicks);
-    console.log(clicksString);
+    let clicksString = JSON.stringify(clicks);
     localStorage.setItem('userClicks', clicks);
   }
 
   function updateViews() {
     const viewString = JSON.stringify(views);
-    console.log(viewString);
     localStorage.setItem('userViews', views);
   }
 
   updateClicks();
   updateViews();
+
+console.log(localStorage);
 
   // localStorage.removeItem('cart');
   // localStorage.setItem('clicks', JSON.stringify(clicks));
@@ -177,7 +179,6 @@ function renderChart() {
   // JSON.parse(localStorage.getItem('clicks'));
   // JSON.parse(localStorage.getItem('views'));
 
-  console.log(localStorage);
 // This is the code to Generate the Chart//
 // const myChart = new Chart(ctx, {
 //   type: 'bar',
